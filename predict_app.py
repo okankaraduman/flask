@@ -48,7 +48,6 @@ def preprocess_image(image,target_size):
 		image = image.resize(target_size)
 		image= img_to_array(image)
 		image = np.expand_dims(image,axis=0)
-		#image = image.reshape(-1,100,100,3)
 
 		print(image.shape)
 		
@@ -74,7 +73,6 @@ def predict():
 		decoded = base64.b64decode(encoded)
 		image= Image.open(io.BytesIO(decoded))
 		processed_image = preprocess_image(image,target_size=(100,100))
-		#prediction = model.predict(processed_image)  # sorun burda Model NoneType olmuş amk
 		prediction = session(processed_image)
 		print(prediction.shape)
 		sonuc = get_commonname(prediction)
